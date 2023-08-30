@@ -156,3 +156,9 @@ namespace API.Controllers
 
 Add postman collection to postman.   Import skinet_postmancollection.json into your Postman and test the methods in Section 2 to make sure your controller can be reached. 
 
+```
+REMOVE AND ADD AGAIN MIGRATIONS
+```
+delele xxx.db
+dotnet ef migrations remove -p Infrastructure -s API
+dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
