@@ -12,7 +12,6 @@ namespace Infrastructure.Data.Config
             builder.Property(u => u.Id).IsRequired();
             builder.Property(u => u.UserName).IsRequired();
             builder.Property(u => u.Email).IsRequired();
-            builder.Property(u => u.PasswordHash).IsRequired();
 
             //builder.HasMany(u => u.UserRoles).WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
 

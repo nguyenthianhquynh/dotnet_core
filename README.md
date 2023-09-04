@@ -157,8 +157,67 @@ namespace API.Controllers
 Add postman collection to postman.   Import skinet_postmancollection.json into your Postman and test the methods in Section 2 to make sure your controller can be reached. 
 
 ```
+REFACTOR
+```
+classlib: Common/Library   
+- dotnet new classlib -n Core
+- dotnet new classlib -n Infrastructure
+
+- dotnet sln add Core
+- dotnet sln add Infrastructure
+
+- dotnet add reference ../Core
+- dotnet add reference ../Infrastructure
+
+------ dotnet restore -> dotnet build
+
+# 2. Create Interfaces Repository Pattern
+
+- Core/Interfaces
+- Infrastructure/Repositories
+
+- dotnet new interface -n IProductRepository
+- dotnet new class -n ProductRepository
+
+- Controller -> Repository
+
+------ addScoped<IProductRepository, ProductRepository> in Startup.cs
+------ end run
+
+# 3. Create BaseEntity for Id
+- Core/Entities/BaseEntity.cs
+- inherit BaseEntity in Users
+
+------ dotnet ef migrations remove -p Infrastructure -s API
+------ dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
+
+
+```
 REMOVE AND ADD AGAIN MIGRATIONS
 ```
-delele xxx.db
-dotnet ef migrations remove -p Infrastructure -s API
-dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+1. delele xxx.db
+2. dotnet ef migrations remove -p Infrastructure -s API
+3. dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+4. dotnet ef database update -p Infrastructure -s API
+
+Creating seed data
+=============================
+- Infrastructure/Data/SeedData.cs
+- create StorecontextSeed
+- add seed data in Program.cs
+
+------ dotnet watch --no-hot-reload
+
+Generic Repository/
+Specification Pattern/
+SpecificationEvaluator/
+Shaping Data for the client/
+AutoMapper/
+Serving static content from API/ => UseStaticFiles()
+=============================
+
+
+
+Error Handling
+=============================

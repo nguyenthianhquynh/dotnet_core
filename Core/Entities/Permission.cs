@@ -7,7 +7,7 @@ namespace Core.Entities
 {
     public class Permission : BaseEntity
     {
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string Slug { get; set; }
         public string Description { get; set; }
         public bool Action { get; set; }
