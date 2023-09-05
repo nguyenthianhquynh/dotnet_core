@@ -221,3 +221,5 @@ Serving static content from API/ => UseStaticFiles()
 
 Error Handling
 =============================
+
+dotnet add package Microsoft.AspNetCore.Cors
