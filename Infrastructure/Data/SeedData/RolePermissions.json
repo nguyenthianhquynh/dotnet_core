@@ -1,0 +1,38 @@
+[
+    {
+        "RoleId": 1,
+        "PermissionId": 1
+    },
+    {
+        "RoleId": 1,
+        "PermissionId": 2
+    },
+    {
+        "RoleId": 2,
+        "PermissionId": 1
+    },
+    {
+        "RoleId": 2,
+        "PermissionId": 2
+    },
+    {
+        "RoleId": 2,
+        "PermissionId": 3
+    },
+    {
+        "RoleId": 3,
+        "PermissionId": 1
+    },
+    {
+        "RoleId": 3,
+        "PermissionId": 2
+    },
+    {
+        "RoleId": 3,
+        "PermissionId": 3
+    },
+    {
+        "RoleId": 3,
+        "PermissionId": 4
+    }
+]

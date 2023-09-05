@@ -1,0 +1,22 @@
+[
+    {
+        "Id": 1,
+        "Name": "read",
+        "Description": "Permission to view content"
+    },
+    {
+        "Id": 2,
+        "Name": "write",
+        "Description": "Permission to create and modify content"
+    },
+    {
+        "Id": 3,
+        "Name": "delete",
+        "Description": "Permission to delete content"
+    },
+    {
+        "Id": 4,
+        "Name": "admin",
+        "Description": "Full administrative privileges"
+    }
+]

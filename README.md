@@ -213,7 +213,7 @@ Generic Repository/
 Specification Pattern/
 SpecificationEvaluator/
 Shaping Data for the client/
-AutoMapper/
+AutoMapper/   (nuget: AutoMapper.Extensions.Microsoft.DependencyInjection)
 Serving static content from API/ => UseStaticFiles()
 =============================
 

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -29,12 +31,23 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IReadOnlyList<UserReturnDto>>GetUsers()
+        public async Task<Pagination<UserReturnDto>>GetUsers([FromQuery]UsersSpecParams usersParams)
         {
             // return await UsersRepo.getItemsAsync();
-            var spec = new UsersWithPermission();
+            var spec = new UsersWithPermission(usersParams);
             var users = await UsersRepo.getItemsAsync(spec);
-            return _mapper.Map<IReadOnlyList<UserReturnDto>>(users);
+
+            var specCount = new UsersWithPermission(usersParams,true);
+            var TotalRecord = await UsersRepo.CountAsync(specCount);
+
+            var rsCombinePaginated = new Pagination<UserReturnDto>(
+                usersParams.PageSize,
+                usersParams.PageIndex,
+                TotalRecord,
+                _mapper.Map<IReadOnlyList<UserReturnDto>>(users));
+
+
+            return rsCombinePaginated;
         }
 
         [HttpGet("{id}")]

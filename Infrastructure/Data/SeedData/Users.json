@@ -1,0 +1,37 @@
+[
+    {
+        "Id": 1,
+        "RoleId": 1,
+        "UserName": "john_doe",
+        "Email": "john@example.com",
+        "ProfilePic": "/images/pngegg.png"
+    },
+    {
+        "Id": 2,
+        "RoleId": 2,
+        "UserName": "jane_smith",
+        "Email": "jane@example.com",
+        "ProfilePic": "/images/pngegg.png"
+    },
+    {
+        "Id": 3,
+        "RoleId": 3,
+        "UserName": "admin_user",
+        "Email": "admin@example.com",
+        "ProfilePic": "/images/pngegg.png"
+    },
+    {
+        "Id": 4,
+        "RoleId": 1,
+        "UserName": "guest_user",
+        "Email": "guest@example.com",
+        "ProfilePic": "/images/pngegg.png"
+    },
+    {
+        "Id": 5,
+        "RoleId": 2,
+        "UserName": "manager_user",
+        "Email": "manager@example.com",
+        "ProfilePic": "/images/pngegg.png"
+    }
+]

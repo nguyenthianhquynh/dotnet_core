@@ -1,0 +1,17 @@
+[
+    {
+        "Id": 1,
+        "Name": "user",
+        "Description": "Standard user role with basic access"
+    },
+    {
+        "Id": 2,
+        "Name": "editor",
+        "Description": "Role with content editing permissions"
+    },
+    {
+        "Id": 3,
+        "Name": "admin",
+        "Description": "Administrative role with full privileges"
+    }
+]
