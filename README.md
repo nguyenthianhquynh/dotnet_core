@@ -1,3 +1,5 @@
+INIT PROJECT
+=============================
 
 mkdir skinet
 cd skinet
@@ -14,56 +16,28 @@ cd ..
 cd Infrastructure
 dotnet add reference ../Core
 
-Open the solution in your IDE of choice
-
 Creating the required classes
 =============================
+--Core
+----Entitites
+------Product
 
-Create a new folder in the Core project called Entities
+--Infrastructure
+----Data
+------StoreContext.cs
 
-Create new class called Product.cs with the following code:
 
-namespace Core.Entitites
-{
-    public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-}
+REQUIREMENTS
+=============================
 
-Install Entity Framework Packages:
+Install Entity Framework Packages:(nuget)
+  - Microsoft.EntityFrameworkCore.Design
+  - Microsoft.EntityFrameworkCore.Sqlite
 
-In the API project add a nuget package for:
-
-Microsoft.EntityFrameworkCore.Design
-
-In the Infrastructure project add nuget packages for:
-
-Microsoft.EntityFrameworkCore.Sqlite
-
-run the following command:
-
+```
+dotnet build
 dotnet restore
-
-Create a new Folder in the Infrastructure project called Data
-
-Create a new Class in the Infrastructure project called StoreContext with the following code:
-
-using Core.Entitites;
-using Microsoft.EntityFrameworkCore;
-
-namespace Infrastructure.Data
-{
-    public class StoreContext : DbContext
-    {
-        public StoreContext(DbContextOptions<StoreContext> options) : base(options)
-        {
-        }
-
-        public DbSet<Product> Products { get; set; }
-    }
-}
+```
 
 Add a connection string in appsettings.development.json:
 
@@ -100,15 +74,6 @@ dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migratio
 
 dotnet ef database update -p Infrastructure -s API
 
-You should now have a skinet.db file.
-
-Open the database and run the following query to add 3 entries into the DB:
-
--- SQLite
-INSERT INTO `Products` (Id, Name)
-VALUES (1, 'Product One'), (2, 'Product Two'), (3, 'Product Three')
-
-Check the DB to make sure you can see 3 entries in there.
 
 Adding the controller
 =====================
@@ -188,11 +153,6 @@ classlib: Common/Library
 - Core/Entities/BaseEntity.cs
 - inherit BaseEntity in Users
 
------- dotnet ef migrations remove -p Infrastructure -s API
------- dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
-
-
-
 ```
 REMOVE AND ADD AGAIN MIGRATIONS
 ```
@@ -221,5 +181,3 @@ Serving static content from API/ => UseStaticFiles()
 
 Error Handling
 =============================
-
-dotnet add package Microsoft.AspNetCore.Cors

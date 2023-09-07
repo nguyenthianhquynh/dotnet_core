@@ -37,3 +37,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
           },
 }
 ```
+
+npm install -g @angular/cli@15
+npm install
+
+follow this link => set up https
+https://github.com/FiloSottile/mkcert
+
+ng serve
+
+## Further help 
+(--skip-tests --dry-run)
+ng g m user
+ng g c user/user
+ng g s user/user --skip-tests
+ng g m user/user-routing --flat
