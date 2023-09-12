@@ -33,7 +33,16 @@ namespace Infrastructure.Data
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<T>> getItemsAsync(IBaseSpecification<T>  spec)
+        public async Task<T> getItemBySpec(IBaseSpecification<T> spec)
+        {
+            return await ApplySpecification(spec).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> getItemsAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+        public async Task<IReadOnlyList<T>> getItemsAsyncBySpec(IBaseSpecification<T>  spec)
         {
             return await ApplySpecification(spec).ToListAsync();
         }

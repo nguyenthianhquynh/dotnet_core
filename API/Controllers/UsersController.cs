@@ -35,7 +35,7 @@ namespace API.Controllers
         {
             // return await UsersRepo.getItemsAsync();
             var spec = new UsersWithPermission(usersParams);
-            var users = await UsersRepo.getItemsAsync(spec);
+            var users = await UsersRepo.getItemsAsyncBySpec(spec);
 
             var specCount = new UsersWithPermission(usersParams,true);
             var TotalRecord = await UsersRepo.CountAsync(specCount);
