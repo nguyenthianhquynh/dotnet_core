@@ -1,0 +1,22 @@
+.tooltip {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+  
+    .triangle {
+      position: relative;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid $primary1;
+    }
+  
+    .tooltip-body {
+      background-color: $primary1;
+      border-radius: 4px;
+      box-shadow: 0 0 10px 1px rgba(2, 2, 2, 0.1);
+      padding: 10px;
+    }
+  }
