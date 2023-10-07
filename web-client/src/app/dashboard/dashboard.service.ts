@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { UrlParams } from '../models/urlParams';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class DashboardService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts = () => {
-    this.http.get(this.baseUrl + 'products').subscribe((data) => {
-      console.log(data);
-    });
+  getProducts = (urlParams: UrlParams) => {
+    let params = new HttpParams();
+    params = params.append('sort', urlParams.sort);
+    return this.http.get(this.baseUrl + 'products', { params })
   }
 }

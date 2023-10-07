@@ -13,7 +13,7 @@ import { CardItemComponent } from './components/card-item/card-item.component';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule // <-- Add this
+    DashboardRoutingModule // <-- Add this,
   ]
 })
 export class DashboardModule { }

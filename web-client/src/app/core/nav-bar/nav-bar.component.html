@@ -6,12 +6,18 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-black">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-black">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-black">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-black">
-            About
+          <li>
+            <a class="nav-link px-2 text-black" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <!-- <li><a class="nav-link px-2 text-secondary"> Home</a></li> -->
+          <li><a class="nav-link px-2 text-black" routerLink="/dashboard" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" >Features</a></li>
+          <li><a class="nav-link px-2 text-black">Pricing</a></li>
+          <li><a class="nav-link px-2 text-black">FAQs</a></li>
+          <li><a class="nav-link px-2 text-black">
+            About me
             <div class="tooltip">
               <app-tooltip>
                 <span slot="my-tooltip">This is a tooltip</span>

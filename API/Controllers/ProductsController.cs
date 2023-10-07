@@ -27,9 +27,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductToReturnDto>>> GetProducts()
+        public async Task<ActionResult<List<ProductToReturnDto>>> GetProducts([FromQuery] BaseSpecParams urlParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(urlParams);
 
             var products = await _productsRepo.getItemsAsyncBySpec(spec);
 

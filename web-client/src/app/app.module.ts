@@ -7,13 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TooltipComponent } from './app-common/tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TooltipComponent
   ],
   imports: [
     BrowserModule,
