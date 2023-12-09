@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BasketService } from './basket/basket.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'web-client';
+  title = 'shopping';
+
+  constructor(private basketService: BasketService){
+    const basket_id = localStorage.getItem("basket_id") ?? ""
+    this.basketService.getBasket(basket_id);
+  }
 }

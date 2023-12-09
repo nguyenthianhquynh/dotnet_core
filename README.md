@@ -181,3 +181,11 @@ Serving static content from API/ => UseStaticFiles()
 
 Error Handling
 =============================
+REDIS: STORE BACKET
+1. install StackExchange.Redis
+2. add connectstring to service
+3. class for basket => generate DB in redis
+run: 
+open /Applications/Docker.app
+docker-compose up -d
+============================

@@ -6,3 +6,20 @@
     left: -23px;
     white-space: nowrap;
   }
+
+  .number-of-item{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -15px;
+    text-align: center;
+    font-size: large;
+  }
+
+  .cart{
+    position: relative;
+  }

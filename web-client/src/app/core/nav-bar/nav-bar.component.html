@@ -8,12 +8,11 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li>
             <a class="nav-link px-2 text-black" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <i class="fa fa-home" aria-hidden="true"></i>
-              <span>Home</span>
+              <i class="fa fa-home fa-2x" aria-hidden="true"></i>
             </a>
           </li>
           <!-- <li><a class="nav-link px-2 text-secondary"> Home</a></li> -->
-          <li><a class="nav-link px-2 text-black" routerLink="/dashboard" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" >Features</a></li>
+          <li><a class="nav-link px-2 text-black" routerLink="/dashboard" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" >Products</a></li>
           <li><a class="nav-link px-2 text-black">Pricing</a></li>
           <li><a class="nav-link px-2 text-black">FAQs</a></li>
           <li><a class="nav-link px-2 text-black">
@@ -31,7 +30,15 @@
         </form>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-secondary me-2">Login</button>
+          <a routerLink="/basket" class="align-items-center mb-2 mb-lg-0 text-black text-decoration-none pe-2">
+            <i class="cart fa fa-shopping-cart fa-2x" aria-hidden="true">
+            <span *ngIf="(basketService.basket$ | async) as basket" class="number-of-item">
+              {{getTheNumberOfProduct(basket.items)}}
+            </span>
+            </i>
+          </a>
+
+          <button type="button" class="btn btn-outline-secondary me-2 ms-3">Login</button>
           <button type="button" class="btn btn-warning">Sign-up</button>
         </div>
       </div>

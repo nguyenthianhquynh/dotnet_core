@@ -1,0 +1,19 @@
+<div class="bg-light px-4 py-3 text-uppercase fw-bold">
+    Order summary
+</div>
+<div>
+    <ul class="list-unstyled mb-4" *ngIf="(this.basketService.basketTotalSource$ | async) as summaryOrder">
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong>order</strong>
+            <strong>{{summaryOrder.totalPrice | currency:"VND"}}</strong>
+        </li>
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong>shipping</strong>
+            <strong>{{summaryOrder.shippingPrice| currency:"VND"}}</strong>
+        </li>
+        <li class="d-flex justify-content-between py-3 border-bottom"> 
+            <strong>Total</strong>
+            <strong>{{summaryOrder.total| currency:"VND"}}</strong>
+        </li>
+    </ul>
+</div>
