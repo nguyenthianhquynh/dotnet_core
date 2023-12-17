@@ -1,8 +1,12 @@
 using API.Extensions;
 using API.Middleware;
+using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.Data.DBcontexts;
+using Infrastructure.DataIdentity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,13 +16,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddAppServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
-app.UseSwagger();
-app.UseSwaggerUI();
+
+// app.UseSwagger(); by me
+// app.UseSwaggerUI();
+app.UseSwaggerDocumentation();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,6 +39,7 @@ app.UseStaticFiles();
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); //must be before authorization
 app.UseAuthorization();
 
 app.MapControllers();
@@ -39,9 +48,14 @@ app.MapControllers();
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 var context = services.GetRequiredService<StoreContext>();
+var identityContext = services.GetRequiredService<AppIdentityDBContext>();
+var userManager = services.GetRequiredService<UserManager<AppUser>>();
 try
 {
     await StoreContextSeed.SeedAsync(context);
+    await identityContext.Database.MigrateAsync();
+    await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
+
 }
 catch (Exception ex)
 {

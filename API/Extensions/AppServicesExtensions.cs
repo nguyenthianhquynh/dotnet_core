@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using StackExchange.Redis;
+using Infrastructure.Services;
 
 namespace API.Extensions
 {
@@ -19,9 +20,10 @@ namespace API.Extensions
         {
             // Add services to the container.
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckles
+            
+            // services.AddEndpointsApiExplorer(); by me
+            // services.AddSwaggerGen();
 
             //custom
             services.AddDbContext<StoreContext>(opt =>
@@ -36,6 +38,7 @@ namespace API.Extensions
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.Configure<ApiBehaviorOptions>(options =>
