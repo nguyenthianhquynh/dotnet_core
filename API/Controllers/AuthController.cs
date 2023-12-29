@@ -17,12 +17,12 @@ namespace API.Controllers
 {
     public class AuthController : BaseApiController
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ITokenService _tokenService;
 
         private readonly IMapper _mapper;
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IMapper mapper)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -54,7 +54,7 @@ namespace API.Controllers
             //duplicate email
             if(this.getUserByEmailAsync(registerDto.Email).Result.Value != null) return BadRequest(new ApiResponse(400, "Email address already exists"));
 
-            var user = new AppUser
+            var user = new User
             {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
@@ -100,11 +100,16 @@ namespace API.Controllers
         }
 
         [HttpGet("address")]
-        public async Task<ActionResult<AddressDto>> GetUserAddress()
+        public async Task<ActionResult<List<AddressDto>>> GetUserAddress()
         {
             var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
 
-            return _mapper.Map<Address, AddressDto>(user.Address);
+            List <AddressDto> addresses = new List<AddressDto>();
+            foreach (var address in user.Addresses)
+            {
+                addresses.Add(_mapper.Map<Address, AddressDto>(address));
+            }
+            return addresses;
         }
 
         [Authorize]
@@ -113,11 +118,13 @@ namespace API.Controllers
         {
             var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
 
-            user.Address = _mapper.Map<AddressDto, Address>(address);
+            user.Addresses = user.Addresses.Select(ad => {
+                return (ad.Id == address.Id ? _mapper.Map<AddressDto, Address>(address) : ad);
+            }).ToList();
 
             var result = await _userManager.UpdateAsync(user);
 
-            if (result.Succeeded) return Ok(_mapper.Map<AddressDto>(user.Address));
+            if (result.Succeeded) return Ok(_mapper.Map<AddressDto>(user.Addresses.Find(x => x.Id == address.Id)));
 
             return BadRequest("Problem updating the user");
         }

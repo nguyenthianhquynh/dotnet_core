@@ -2,6 +2,8 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Text.Json;
 using Core.Entities;
+using Core.Entities.Identity;
+using Core.Entities.Order;
 
 namespace Infrastructure.Data
 {
@@ -11,27 +13,27 @@ namespace Infrastructure.Data
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            if (!context.Roles.Any())
-            {
-                //Infrastructure/Data/SeedData/Roles.json
-                var rolesData = File.ReadAllText("../Infrastructure/Data/SeedData/Roles.json");
-                var roles = JsonSerializer.Deserialize<List<Role>>(rolesData);
-                context.Roles.AddRange(roles);
-            }
+            // if (!context.Roles.Any())
+            // {
+            //     //Infrastructure/Data/SeedData/Roles.json
+            //     var rolesData = File.ReadAllText("../Infrastructure/Data/SeedData/Roles.json");
+            //     var roles = JsonSerializer.Deserialize<List<Role>>(rolesData);
+            //     context.Roles.AddRange(roles);
+            // }
 
-            if (!context.Permissions.Any())
-            {
-                var permissionsData = File.ReadAllText("../Infrastructure/Data/SeedData/Permissions.json");
-                var permissions = JsonSerializer.Deserialize<List<Permission>>(permissionsData);
-                context.Permissions.AddRange(permissions);
-            }
+            // if (!context.Permissions.Any())
+            // {
+            //     var permissionsData = File.ReadAllText("../Infrastructure/Data/SeedData/Permissions.json");
+            //     var permissions = JsonSerializer.Deserialize<List<Permission>>(permissionsData);
+            //     context.Permissions.AddRange(permissions);
+            // }
 
-            if (!context.RolePermissions.Any())
-            {
-                var rolePermissionsData = File.ReadAllText("../Infrastructure/Data/SeedData/RolePermissions.json");
-                var rolePermissions = JsonSerializer.Deserialize<List<RolePermission>>(rolePermissionsData);
-                context.RolePermissions.AddRange(rolePermissions);
-            }
+            // if (!context.RolePermissions.Any())
+            // {
+            //     var rolePermissionsData = File.ReadAllText("../Infrastructure/Data/SeedData/RolePermissions.json");
+            //     var rolePermissions = JsonSerializer.Deserialize<List<RolePermission>>(rolePermissionsData);
+            //     context.RolePermissions.AddRange(rolePermissions);
+            // }
 
             if (!context.Users.Any())
             {
@@ -59,6 +61,22 @@ namespace Infrastructure.Data
                 var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
                 context.Products.AddRange(products);
+            }
+
+            //shipment
+            if (!context.Shipments.Any())
+            {
+                var shipmentsData = File.ReadAllText("../Infrastructure/Data/SeedData/Order/Shipments.json");
+                var shipments = JsonSerializer.Deserialize<List<Shipment>>(shipmentsData);
+                context.Shipments.AddRange(shipments);
+            }
+
+            //payment
+            if (!context.Payments.Any())
+            {
+                var paymentsData = File.ReadAllText("../Infrastructure/Data/SeedData/Order/Payments.json");
+                var payments = JsonSerializer.Deserialize<List<Payment>>(paymentsData);
+                context.Payments.AddRange(payments);
             }
 
             if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();

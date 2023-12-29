@@ -24,25 +24,25 @@ namespace API.Controllers
             return "secret stuff";
         }
 
-        [HttpGet("notfound")]
-        public ActionResult GetNotFoundRequest()
-        {
-            var thing = _context.Users.Find(0);
+        // [HttpGet("notfound")]
+        // public ActionResult GetNotFoundRequest()
+        // {
+        //     var thing = _context.Users.Find(0);
 
-            if (thing == null) return NotFound(new ApiResponse(404));
+        //     if (thing == null) return NotFound(new ApiResponse(404));
 
-            return Ok();
-        }
+        //     return Ok();
+        // }
 
-        [HttpGet("servererror")]
-        public ActionResult GetServerError()
-        {
-            var thing = _context.Users.Find(0);
+        // [HttpGet("servererror")]
+        // public ActionResult GetServerError()
+        // {
+        //     var thing = _context.Users.Find(0);
 
-            var thingToReturn = thing.ToString();
+        //     var thingToReturn = thing.ToString();
 
-            return Ok();
-        }
+        //     return Ok();
+        // }
 
         [HttpGet("badrequest")]
         public ActionResult GetBadRequest()

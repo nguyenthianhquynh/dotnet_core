@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class User: BaseEntity
+    public class AppUser: BaseEntity
     {
        public int RoleId {get; set;}
        public string UserName {get; set;}

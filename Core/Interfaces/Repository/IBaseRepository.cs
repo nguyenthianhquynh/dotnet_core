@@ -11,5 +11,12 @@ namespace Core.Interfaces
         public Task<IReadOnlyList<T>> getItemsAsync();
         public Task<IReadOnlyList<T>> getItemsAsyncBySpec(IBaseSpecification<T> spec);
         public Task<int> CountAsync(IBaseSpecification<T> spec);
+
+        void Add(T entity);
+
+
+        void Update(T entity);
+        void Delete(T entity);
+        public Task<int> AddAsync(T entity);
     }
 }

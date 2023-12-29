@@ -1,4 +1,5 @@
 using Core.Entities;
+using Core.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,8 +16,8 @@ namespace Infrastructure.Data.Config
 
             //builder.HasMany(u => u.UserRoles).WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
 
-            builder.Property(u => u.CreateAt).HasDefaultValueSql("datetime('now')");
-            builder.Property(u => u.UpdateAt).HasDefaultValueSql("datetime('now')");
+            //builder.Property(u => u.CreateAt).HasDefaultValueSql("datetime('now')");
+            //builder.Property(u => u.UpdateAt).HasDefaultValueSql("datetime('now')");
         }
 
     }

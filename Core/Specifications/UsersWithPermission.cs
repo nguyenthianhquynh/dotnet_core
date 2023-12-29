@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.Identity;
 
 namespace Core.Specifications
 {
@@ -38,11 +39,11 @@ namespace Core.Specifications
 
             ApplyPaging(usersParams.PageSize * (usersParams.PageIndex - 1), usersParams.PageSize);
         }
-        public UsersWithPermission(int id) : base(x => x.Id == id)
-        {
-            AddInclude(x => x.Role);
-            AddInclude(x => x.Role.RolePermission);
-        }
+        // public UsersWithPermission(int id) : base(x => x.Id == id)
+        // {
+        //     AddInclude(x => x.Role);
+        //     AddInclude(x => x.Role.RolePermission);
+        // }
 
         public UsersWithPermission(UsersSpecParams usersParams, bool isFilter) : base(u =>
         (string.IsNullOrEmpty(usersParams.Role) || u.Role.Name.ToLower() == usersParams.Role) //filtering condition

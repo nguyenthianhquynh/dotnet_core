@@ -17,7 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddAppServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddSwaggerDocumentation();
+//builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
@@ -26,13 +26,11 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 // app.UseSwagger(); by me
 // app.UseSwaggerUI();
-app.UseSwaggerDocumentation();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwaggerDocumentation();
 }
 
 app.UseStaticFiles();
@@ -49,7 +47,7 @@ using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 var context = services.GetRequiredService<StoreContext>();
 var identityContext = services.GetRequiredService<AppIdentityDBContext>();
-var userManager = services.GetRequiredService<UserManager<AppUser>>();
+var userManager = services.GetRequiredService<UserManager<User>>();
 try
 {
     await StoreContextSeed.SeedAsync(context);

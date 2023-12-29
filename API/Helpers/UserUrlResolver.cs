@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Dtos;
 using AutoMapper;
 using Core.Entities;
+using Core.Entities.Identity;
 
 namespace API.Helpers
 {
@@ -18,10 +19,10 @@ namespace API.Helpers
 
         public string Resolve(User source, UserReturnDto destination, string destMember, ResolutionContext context)
         {
-            if (!string.IsNullOrEmpty(source.ProfilePic))
-            {
-                return _configuration["ApiUrl"] + source.ProfilePic;
-            }
+            // if (!string.IsNullOrEmpty(source.ProfilePic))
+            // {
+            //     return _configuration["ApiUrl"] + source.ProfilePic;
+            // }
             return null;
         }
     }

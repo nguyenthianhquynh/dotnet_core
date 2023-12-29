@@ -120,13 +120,10 @@ export class BasketService {
     return nBasket
   }
   setBasketItems(items: IBasketItem[], item: IBasketItem, quantity: number): IBasketItem[] {
-    //exist => update quantity
-    //not exist => add new item
     const itemExist = items.find(i => i.id == item.id)
-
+    item.quantity = quantity
     if (itemExist) {
-      item.quantity = itemExist.quantity
-      item.quantity += quantity
+      item.quantity += itemExist.quantity
       items = items.map(x =>
         x.id === item.id ? item : x
       )

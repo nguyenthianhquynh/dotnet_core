@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.Identity;
+using Core.Entities.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -13,12 +15,18 @@ namespace Infrastructure.Data
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
 
         public DbSet<User> Users {get; set;}
-        public DbSet<Role> Roles {get; set;}
-        public DbSet<Permission> Permissions {get; set;}
-        public DbSet<RolePermission> RolePermissions {get; set;}
+        //public DbSet<Role> Roles {get; set;}
+        //public DbSet<Permission> Permissions {get; set;}
+        //public DbSet<RolePermission> RolePermissions {get; set;}
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
+
+        //Order
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

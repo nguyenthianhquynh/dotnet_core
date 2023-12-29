@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using StackExchange.Redis;
 using Infrastructure.Services;
+using Core.Interfaces.Repository;
 
 namespace API.Extensions
 {
@@ -36,9 +37,12 @@ namespace API.Extensions
                 return ConnectionMultiplexer.Connect(options);
             });
             services.AddScoped<IBasketRepository, BasketRepository>();
+
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.Configure<ApiBehaviorOptions>(options =>

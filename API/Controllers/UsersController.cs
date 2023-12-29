@@ -17,52 +17,52 @@ namespace API.Controllers
 {
     public class UsersController : BaseApiController
     {
-        private readonly IBaseRepository<User> UsersRepo;
-        private readonly IBaseRepository<RolePermission> RolePerRepo;
-        private readonly IMapper _mapper;
+        // private readonly IBaseRepository<AppUser> UsersRepo;
+        // private readonly IBaseRepository<RolePermission> RolePerRepo;
+        // private readonly IMapper _mapper;
 
-        public UsersController(IBaseRepository<User> usersRepo,
-        IBaseRepository<RolePermission> rolePerRepo,
-        IMapper mapper)
-        {
-            this._mapper = mapper;
-            this.RolePerRepo = rolePerRepo;
-            this.UsersRepo = usersRepo;
-        }
+        // public UsersController(IBaseRepository<AppUser> usersRepo,
+        // IBaseRepository<RolePermission> rolePerRepo,
+        // IMapper mapper)
+        // {
+        //     this._mapper = mapper;
+        //     this.RolePerRepo = rolePerRepo;
+        //     this.UsersRepo = usersRepo;
+        // }
 
-        [HttpGet]
-        public async Task<Pagination<UserReturnDto>>GetUsers([FromQuery]UsersSpecParams usersParams)
-        {
-            // return await UsersRepo.getItemsAsync();
-            var spec = new UsersWithPermission(usersParams);
-            var users = await UsersRepo.getItemsAsyncBySpec(spec);
+        // [HttpGet]
+        // public async Task<Pagination<UserReturnDto>>GetUsers([FromQuery]UsersSpecParams usersParams)
+        // {
+        //     // return await UsersRepo.getItemsAsync();
+        //     var spec = new UsersWithPermission(usersParams);
+        //     var users = await UsersRepo.getItemsAsyncBySpec(spec);
 
-            var specCount = new UsersWithPermission(usersParams,true);
-            var TotalRecord = await UsersRepo.CountAsync(specCount);
+        //     var specCount = new UsersWithPermission(usersParams,true);
+        //     var TotalRecord = await UsersRepo.CountAsync(specCount);
 
-            var rsCombinePaginated = new Pagination<UserReturnDto>(
-                usersParams.PageSize,
-                usersParams.PageIndex,
-                TotalRecord,
-                _mapper.Map<IReadOnlyList<UserReturnDto>>(users));
+        //     var rsCombinePaginated = new Pagination<UserReturnDto>(
+        //         usersParams.PageSize,
+        //         usersParams.PageIndex,
+        //         TotalRecord,
+        //         _mapper.Map<IReadOnlyList<UserReturnDto>>(users));
 
 
-            return rsCombinePaginated;
-        }
+        //     return rsCombinePaginated;
+        // }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)] // this is for swagger
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)] // this is for swagger
-        public async Task<ActionResult<UserReturnDto>> GetUserById(int id)
-        {
-            var user = await UsersRepo.getItemByIdAsync(id);
+        // [HttpGet("{id}")]
+        // [ProducesResponseType(StatusCodes.Status200OK)] // this is for swagger
+        // [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)] // this is for swagger
+        // public async Task<ActionResult<UserReturnDto>> GetUserById(int id)
+        // {
+        //     var user = await UsersRepo.getItemByIdAsync(id);
 
-            if (user == null){
-                user.Id = id;
-                return NotFound(new ApiResponse(404));
-            } 
+        //     if (user == null){
+        //         user.Id = id;
+        //         return NotFound(new ApiResponse(404));
+        //     } 
 
-            return _mapper.Map<User,UserReturnDto>(user);
-        }
+        //     return _mapper.Map<User,UserReturnDto>(user);
+        // }
     }
 }

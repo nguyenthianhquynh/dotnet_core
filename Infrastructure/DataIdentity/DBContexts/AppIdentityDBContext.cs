@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.DBcontexts
 {
-    public class AppIdentityDBContext : IdentityDbContext<AppUser>
+    public class AppIdentityDBContext : IdentityDbContext<User>
     {
         public AppIdentityDBContext(DbContextOptions<AppIdentityDBContext> options) : base(options)
         {

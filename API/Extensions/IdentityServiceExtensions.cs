@@ -21,12 +21,12 @@ namespace API.Extensions
     opt.UseSqlite(config.GetConnectionString("IdentityConnection"));
 });
 
-            services.AddIdentityCore<AppUser>(opt =>
+            services.AddIdentityCore<User>(opt =>
             {
                 // add identity options here
             })
             .AddEntityFrameworkStores<AppIdentityDBContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
+            .AddSignInManager<SignInManager<User>>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

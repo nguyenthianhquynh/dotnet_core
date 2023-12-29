@@ -157,9 +157,11 @@ classlib: Common/Library
 REMOVE AND ADD AGAIN MIGRATIONS
 ```
 1. delele xxx.db
-2. dotnet ef migrations remove -p Infrastructure -s API
+2. cd to solution
+2. dotnet ef migrations remove -p Infrastructure -s API -c StoreContext
 3. dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
-4. dotnet ef database update -p Infrastructure -s API
+3. dotnet ef migrations add OrderEntityAdded -p Infrastructure -s API -c StoreContext
+4. dotnet ef database update -p Infrastructure -s API -c StoreContext
 
 Creating seed data
 =============================
@@ -189,3 +191,14 @@ run:
 open /Applications/Docker.app
 docker-compose up -d
 ============================
+
+Microsoft.AspNetCore.Identity
+Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Microsoft.IdentityModel.Tokens
+
+Microsoft.AspNetCore.Authentication.JwtBearer
+
+//delete xxx.db
+dotnet ef migrations remove -p Infrastructure -s API -c AppIdentityDBContext -o DataIdentity/Migrations
+DotNet_Core % dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDBContext -o DataIdentity/Migrations
+DotNet_Core % dotnet ef database update -p Infrastructure -s API -c AppIdentityDBContext

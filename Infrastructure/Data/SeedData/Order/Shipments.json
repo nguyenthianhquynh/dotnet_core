@@ -1,0 +1,23 @@
+[
+    {
+        "Id": 1,
+        "ShortName": "Today",
+        "Description": "Fastest delivery time",
+        "DeliveryTime": "1 Day",
+        "Price": 10
+    },
+    {
+        "Id": 2,
+        "ShortName": "Quickly",
+        "Description": "Get it within 5 days",
+        "DeliveryTime": "2-5 Days",
+        "Price": 5
+    },
+    {
+        "Id": 3,
+        "ShortName": "FREE",
+        "Description": "Free! You get what you pay for",
+        "DeliveryTime": "1-2 Weeks",
+        "Price": 0
+    }
+]

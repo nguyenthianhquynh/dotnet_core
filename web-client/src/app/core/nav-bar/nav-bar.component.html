@@ -32,14 +32,21 @@
         <div class="text-end">
           <a routerLink="/basket" class="align-items-center mb-2 mb-lg-0 text-black text-decoration-none pe-2">
             <i class="cart fa fa-shopping-cart fa-2x" aria-hidden="true">
-            <span *ngIf="(basketService.basket$ | async) as basket" class="number-of-item">
-              {{getTheNumberOfProduct(basket.items)}}
-            </span>
+            <ng-container *ngIf="(basketService.basket$ | async) as basket">
+              <span *ngIf="basket.items.length > 0" class="number-of-item">
+                {{getTheNumberOfProduct(basket.items)}}
+              </span>
+            </ng-container>
             </i>
           </a>
-
-          <button type="button" class="btn btn-outline-secondary me-2 ms-3">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <ng-container *ngIf="(authService.user$ | async) as user">
+            <span class="me-2">Welcome {{user.displayName}}</span>
+            <button (click)="logout()" type="button" class="btn btn-outline-secondary me-2 ms-3">Logout</button>
+          </ng-container>
+          <ng-container *ngIf="(authService.user$ | async) == null">
+            <button routerLink="/login" type="button" class="btn btn-outline-secondary me-2 ms-3">Login</button>
+            <button routerLink="/register" type="button" class="btn btn-warning">Sign-up</button>
+          </ng-container>
         </div>
       </div>
     </div>
