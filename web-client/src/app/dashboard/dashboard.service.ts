@@ -21,4 +21,8 @@ export class DashboardService {
   getProductById = (productId:number) => {
     return this.http.get<Product>(this.baseUrl + "products/" + productId)
   }
+
+  getTypes = () => {
+    return this.http.get(this.baseUrl + 'products/types')
+  }
 }

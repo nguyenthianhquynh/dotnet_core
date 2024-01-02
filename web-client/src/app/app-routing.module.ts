@@ -10,11 +10,11 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 const routes: Routes = [
   { path: '', component: AfterLoginComponent,
     children: [
-      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: '', component: HomeComponent},
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) },
       { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
-    ],
+    ], canActivate: [AuthGuard] 
   },
   {
     path: 'login',
