@@ -1,39 +1,33 @@
-<div class="row p-3">
-    <div class="col-md-auto">
-        <div class="">
-            <h5 class="">Sắp xếp</h5>
+<div class="custom-container">
+    <div class="row p-3">
+        <div class="col-3">
+            <div class="">
+                <h5 class="">Sắp xếp</h5>
+            </div>
+            <select class="form-select" aria-label="Default select example" (change)="sort($event)">
+                <option selected value="1">Name asc</option>
+                <option value="priceAsc">Price Asc</option>
+                <option value="priceDesc">Price Desc</option>
+            </select>
+            <div class="mt-5">
+                <h5 class="">Danh mục</h5>
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                        Tất cả
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action" *ngFor="let type of types">
+                        {{type.name}}
+                    </button>
+                </div>
+            </div>
         </div>
-        <select class="form-select" aria-label="Default select example" (change)="sort($event)">
-            <option selected value="1">Name asc</option>
-            <option value="priceAsc">Price Asc</option>
-            <option value="priceDesc">Price Desc</option>
-        </select>
-        <div class="mt-5">
-            <h5 class="">Danh mục</h5>
-            <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-                    Tất cả
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" *ngFor="let type of types">
-                    {{type.name}}
-                </button>
+        <div class="col-9">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                <div *ngFor="let product of products" style="min-width: 300px;">
+                    <app-card-item [product]="product"></app-card-item>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-9">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div *ngFor="let product of products">
-                <app-card-item [product]="product"></app-card-item>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="row justify-content-md-center">
-    <div class="col-md-auto">
-        Variable width content
-    </div>
-    <div class="col col-lg-2">
-        1 of 3
-    </div>
 </div>
