@@ -6,12 +6,13 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { AfterLoginComponent } from './layouts/after-login/after-login.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
   { path: '', component: AfterLoginComponent,
     children: [
       { path: '', component: HomeComponent},
-      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'shop', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule) },
       { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
     ], canActivate: [AuthGuard] 
@@ -21,6 +22,7 @@ const routes: Routes = [
     component: BeforeLoginComponent, // this is the component with the <router-outlet> in the template
     children: [
       { path: '', component: LoginComponent },
+      { path: 'error', component: ErrorComponent },
     ],
   },
   { path:'register',

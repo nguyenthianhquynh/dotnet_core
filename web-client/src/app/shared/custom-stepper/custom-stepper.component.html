@@ -1,0 +1,33 @@
+<div class="container mt-3">
+    <div [class.row]="isMobile">
+        <div [class.col-sm-3]="isMobile">
+            <div class="row ">
+                <div [class.col]="i<steps.length-1" [class.mw-141]="i == steps.length-1" *ngFor="let step of steps; let i = index">
+                    <div class="d-flex" (click)="selectStepByIndex(i)">
+                        <div class="mat-step-icon mat-step-icon-state-number "
+                            [class.mat-step-icon-selected]="selectedIndex === i">
+                            <div class="mat-step-icon-content text-align-center" ng-reflect-ng-switch="false">
+                                <span aria-hidden="true" >{{i+1}}</span>
+                            </div>
+                        </div>
+                        <div class="mat-step-label mat-step-label-active mat-step-label-selected  align-self-center ps-1 pe-4">
+                            <div class="mat-step-text-label ">{{step.label}}</div>
+                        </div>
+                        <div [hidden]="i == steps.length-1" class="mat-stepper-horizontal-line  align-self-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [class.col-sm-9]="isMobile">
+            <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+
+            <footer >
+                <div class="d-flex justify-content-between">
+                    <button [hidden]="selectedIndex==0" class="btn btn-outline-success" cdkStepperPrevious>Back</button>
+                    <span [hidden]="selectedIndex!=0"></span>
+                    <button [hidden]="selectedIndex==steps.length-1" class="btn btn-outline-success" cdkStepperNext>Next</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

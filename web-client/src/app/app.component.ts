@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from './basket/basket.service';
 import { AuthService } from './pages/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements  OnInit{
   title = 'shopping';
   isLogged = false;
 
-  constructor(private basketService: BasketService, public authService: AuthService){
+  constructor(private basketService: BasketService, public authService: AuthService, private router: Router){
   }
 
   ngOnInit(): void {
@@ -26,6 +27,12 @@ export class AppComponent implements  OnInit{
 
   loadUser(){
     const token = localStorage.getItem('token') ?? ""
-    this.authService.getCurrentUser(token)?.subscribe();
+    this.authService.getCurrentUser(token)?.subscribe(
+      {
+        error: err => {
+          this.router.navigateByUrl('/error');
+        }
+      }
+    );
   }
 }

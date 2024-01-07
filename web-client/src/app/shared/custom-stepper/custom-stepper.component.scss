@@ -1,0 +1,56 @@
+.example-container {
+    border: 1px solid;
+    padding: 10px;
+    margin: 10px;
+}
+
+.example-step-navigation-bar {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.example-step {
+    background: transparent;
+    border: 0;
+    margin: 0 10px;
+    padding: 10px;
+    color: inherit;
+}
+
+.example-step.example-active {
+    border-bottom: 1px solid;
+    font-weight: 600;
+}
+
+.example-nav-button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+}
+
+.mw-141{
+    max-width: 141px;
+}
+
+.mat-step-icon {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mat-stepper-horizontal-line {
+    border-top-width: 1px;
+    border-top-style: solid;
+    flex: auto;
+    height: 0;
+    margin: 0 -16px;
+    min-width: 32px;
+    border-top-color: var(--mat-stepper-line-color);
+}
+
+.mat-step-icon-content{
+    text-align: center  ;
+}

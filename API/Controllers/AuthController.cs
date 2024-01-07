@@ -27,6 +27,7 @@ namespace API.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             this._tokenService = tokenService;
+            _mapper = mapper;
         }
 
         [HttpPost("login")]
@@ -104,10 +105,13 @@ namespace API.Controllers
         {
             var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
 
-            List <AddressDto> addresses = new List<AddressDto>();
-            foreach (var address in user.Addresses)
+            List<AddressDto> addresses = new List<AddressDto>();
+            foreach (Address address in user.Addresses)
             {
-                addresses.Add(_mapper.Map<Address, AddressDto>(address));
+                if (address != null)
+                {
+                    addresses.Add(_mapper.Map<Address, AddressDto>(address));
+                }
             }
             return addresses;
         }
@@ -127,6 +131,17 @@ namespace API.Controllers
             if (result.Succeeded) return Ok(_mapper.Map<AddressDto>(user.Addresses.Find(x => x.Id == address.Id)));
 
             return BadRequest("Problem updating the user");
+        }
+
+        //get list of Addresses by user id
+        [HttpGet("address/{id}")]
+        public async Task<ActionResult<AddressDto>> GetUserAddressById(int id)
+        {
+            var user = await _userManager.FindUserByClaimsPrincipleWithAddress(User);
+
+            var address = user.Addresses.Find(x => x.Id == id);
+
+            return _mapper.Map<Address, AddressDto>(address);
         }
     }
 }

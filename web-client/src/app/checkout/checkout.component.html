@@ -1,1 +1,59 @@
-<p>checkout works!</p>
+<div class="container mt-3">
+    <div [class.row]="!isMobile">
+        <div class="col-sm-9">
+            <!-- <mat-stepper [orientation]="isMobile ? 'vertical' : 'horizontal'">
+                <mat-step>
+                    <ng-template matStepLabel>Address</ng-template>
+                    <ng-template matStepContent>
+                        <p class="mt-3">This content was rendered lazily</p>
+                        <button class="btn btn-outline-success" matStepperNext>Next</button>
+                    </ng-template>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Shipment</ng-template>
+                    <ng-template matStepContent>
+                        <p class="mt-3">This content was also rendered lazily</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-success" matStepperPrevious>Back</button>
+                            <button class="btn btn-outline-success" matStepperNext>Next</button>
+                        </div>
+                    </ng-template>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Payment</ng-template>
+                    <ng-template matStepContent>
+                        <p>This content was also rendered lazily</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-success" matStepperPrevious>Back</button>
+                            <button class="btn btn-outline-success" matStepperNext>Next</button>
+                        </div>
+
+                    </ng-template>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p>This content was rendered eagerly</p>
+                    <button class="btn btn-outline-success" matStepperPrevious>Back</button>
+                </mat-step>
+            </mat-stepper> -->
+
+            <app-custom-stepper #appCustomStepper>
+                <cdk-step [label]="'Address'">
+                    <app-checkout-address [checkoutForm]="checkoutForm"></app-checkout-address>
+                </cdk-step>
+                <cdk-step [label]="'Shipment'">
+                    <app-checkout-shipment [checkoutForm]="checkoutForm" [shipments]="shipments"></app-checkout-shipment>
+                </cdk-step>
+                <cdk-step [label]="'Review'">
+                    <app-selected-products [isReadonly]="true"></app-selected-products>
+                </cdk-step>
+                <cdk-step [label]="'Payment'">
+                    <app-checkout-payment></app-checkout-payment>
+                </cdk-step>
+            </app-custom-stepper>
+        </div>
+        <div [class.col-sm-3]="!isMobile">
+            <app-summary-order></app-summary-order>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddAppServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-//builder.Services.AddSwaggerDocumentation();
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
@@ -30,7 +30,7 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwaggerDocumentation();
+    app.UseSwaggerDocumentation();
 }
 
 app.UseStaticFiles();

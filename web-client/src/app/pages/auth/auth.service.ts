@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {  ReplaySubject, map, of } from 'rxjs';
+import {  BehaviorSubject, Observable, ReplaySubject, map, of, tap } from 'rxjs';
+import { Addresses } from 'src/app/models/address';
 import { IUser } from 'src/app/models/user';
 import { environment } from 'src/env/env.local';
 
@@ -11,8 +12,12 @@ import { environment } from 'src/env/env.local';
 export class AuthService {
 
   baseUrl = environment.apiUrl; 
+  
   private user = new ReplaySubject<IUser | null>(1);
   user$  = this.user.asObservable();
+
+  private addresses = new BehaviorSubject<Addresses | null>(null); 
+  addresses$ = this.addresses.asObservable();
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -91,4 +96,22 @@ export class AuthService {
     );
   }
   //#endregion
+
+  //Auth/address
+  GetUserAddress(){
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get <Addresses>(`${this.baseUrl}auth/address`, { headers }).pipe(
+      map((address: Addresses) => {
+        if (address) {
+          this.addresses.next(address);
+          return address;
+        } else {
+          return null;
+        }
+      })
+    )
+  }
 }

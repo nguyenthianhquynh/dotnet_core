@@ -56,5 +56,11 @@ namespace Infrastructure.Services
             var orders = _unitOfWork.Repository<Order>().getItemsAsyncBySpec(spec);
             return orders;
         }
+
+        public Task<IReadOnlyList<Shipment>> GetShipmentAsync()
+        {
+            var shipments = _unitOfWork.Repository<Shipment>().getItemsAsync();
+            return shipments;
+        }
     }
 }

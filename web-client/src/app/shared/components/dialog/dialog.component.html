@@ -1,0 +1,24 @@
+<!-- <h1>Hi {{dialog.data?.name}}</h1>
+<div>
+    <label id="favorite-animal">What's your favorite animal?</label>
+    <input for="favorite-animal" [(ngModel)]="dialog.data.animal" placeholder="Enter your name">
+</div>
+<div>
+    <button (click)="dialogRef.close(dialog.data.animal)">OK</button>
+    <button (click)="dialogRef.close()">Cancel</button>
+</div> -->
+<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{dialog.data?.name}}</h5>
+                <button (click)="dialogRef.close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ng-container *ngTemplateOutlet="modalBody; context: myContext"></ng-container>
+                {{myContext.address}}
+            </div>
+            <div class="modal-footer">
+                <button (click)="dialogRef.close(myContext.address)" type="button" class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+</div>

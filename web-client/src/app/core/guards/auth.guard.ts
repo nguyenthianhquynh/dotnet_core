@@ -12,7 +12,18 @@ export const AuthGuard: CanActivateFn = (
 
 
     const token = localStorage.getItem('token') ?? ""
-    authService.getCurrentUser(token).pipe().subscribe();
+    // authService.getCurrentUser(token).pipe().subscribe(
+    //     {
+    //         next: user => {
+    //             if (user) {
+    //                 console.log("User is logged in");
+    //             } else {
+    //                 console.log("User is not logged in");
+    //             }
+    //         },
+
+    //     }
+    // );
 
     return authService.user$.pipe(
         map(user => {

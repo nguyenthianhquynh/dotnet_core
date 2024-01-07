@@ -234,10 +234,8 @@ textarea::placeholder {
 
 .form-control {
   height: auto;
-  padding: 7px 0;
-  border: none;
+  padding: 7px;
   border-bottom: 1px solid #d4d7de;
-  border-radius: 0;
   font-size: 1rem;
   color: #141416;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important
@@ -4832,11 +4830,17 @@ input:-webkit-autofill:hover {
 
 .btn-warning {
   background-color: #fde3a0;
-  border-color: #fde3a0;
   color: #57100b;
   font-weight: 700;
   border-radius: 1.25rem;
-  padding: .5rem 1rem
+  padding: .5rem 1rem;
+  width: max-content;
+}
+
+.btn-outline-danger{
+  font-weight: 700;
+    border-radius: 1.25rem;
+    padding: .5rem 1rem;
 }
 
 .btn-warning .active,
@@ -5165,6 +5169,7 @@ input:-webkit-autofill:hover {
 
 .header .h-left {
   display: block;
+  align-items: baseline;
   zoom: 1
 }
 
@@ -5195,10 +5200,6 @@ input:-webkit-autofill:hover {
     height: 28px;
     background-size: 90% auto
   }
-}
-
-.logo span {
-  display: none
 }
 
 .locate-block {
@@ -5490,6 +5491,7 @@ input:-webkit-autofill:hover {
 
 .h-right {
   display: block;
+  align-items: center;
   zoom: 1
 }
 
@@ -6138,7 +6140,7 @@ input:-webkit-autofill:hover {
   .cate-menu .lbl span {
     display: inline-block;
     background: url(/_next/static/media/icon-menu.151a45ef.svg) no-repeat;
-    padding-left: 1.75rem
+    padding-left: 8px;
   }
 
   .cate-dropdown {
@@ -15946,7 +15948,7 @@ div.datepicker .chevron-right {
     background-color: #fff !important
   }
 
-  .mypage-main .container,
+  .mypage-main ,
   .mypage-main .container-fluid {
     padding-right: 0;
     padding-left: 0
@@ -17400,4 +17402,25 @@ button.swiper-pagination-bullet {
 
 .Toastify__toast-body {
   padding: 0
+}
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  --bs-gutter-x: 1.5rem !important;
+  --bs-gutter-y: 0  !important;
+  width: 100% !important;
+  padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
+  padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
+  margin-right: auto  !important;
+  margin-left: auto !important
+}
+
+// my custom
+.text-danger{
+  color: red !important;
 }

@@ -15,5 +15,7 @@ namespace API.Dtos
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
+        // public bool IsDefault { get; set; }
+
     }
 }

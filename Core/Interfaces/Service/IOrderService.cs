@@ -12,5 +12,6 @@ namespace Core.Interfaces
         Task<Order> CreateOrderAsync(Order order, string BasketId);
 
         Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string userId);
+        Task<IReadOnlyList<Shipment>> GetShipmentAsync();
     }
 }

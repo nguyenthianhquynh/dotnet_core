@@ -2,3 +2,31 @@
     border: none;
     max-width: 300px;
 }
+
+.cart-box {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    padding: 8px;
+}
+
+
+.cart-box button.btn-cart {
+    background-image: url(/assets/images/icon-cart.svg);
+}
+
+.cart-box button {
+    display: block;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0;
+    background-color: hsla(0, 0%, 100%, .8);
+    box-shadow: 0 5px 10px hsla(0, 0%, 61%, .22);
+    -webkit-box-shadow: 0 5px 10px hsla(0, 0%, 61%, .22);
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

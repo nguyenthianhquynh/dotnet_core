@@ -5,18 +5,15 @@ using System.Threading.Tasks;
 
 namespace Core.Entities.Identity
 {
-    public class Address
+    public class Address : BaseEntity
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
-        //phone number
         public string PhoneNumber { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zipcode { get; set; }
-        public User User { get; set; }
+        // public bool IsDefault { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+.position-unset {
+    position: unset !important;
+}
+
+.first-dropdown {
+    background: unset;
+    border: unset;
+    color: unset;
+    font-weight: bolder;
+}
+
+.child-dropdown {
+    background: unset;
+    border: unset;
+    color: unset;
+    width: 100%;
+        padding-right: 16px;
+}
+
+.box-shadow-0 {
+    border: none;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

@@ -1,0 +1,28 @@
+<div class="dropdown d-inline">
+    <button (click)="toggle(itemCurr)" [ngClass]="{'first-dropdown':isFirst, 'child-dropdown': !isFirst}" type="button"
+        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="d-flex justify-content-between">
+            <ng-container *ngIf="isFirst">
+                <app-icon icon="bars" class="d-inline"></app-icon>
+            </ng-container>
+            <div class="ps-2">{{text}}</div>
+            <ng-container *ngIf="!isFirst">
+                <app-icon [icon]="icon"></app-icon>
+            </ng-container>
+        </div>
+
+    </button>
+
+    <ul class="dropdown-menu position-unset"
+        [ngClass]="{'d-block':itemCurr?.isShow, 'box-shadow-0': isFirst, 'border-0': !isFirst}">
+        <li *ngFor="let item of itemCurr?.types">
+            <a *ngIf="item.types == null ;else hasChild" class="dropdown-item" href="#">{{item.name}}</a>
+            <ng-template #hasChild>
+                <app-dropdown [text]="item.name" [listItems]="item.types" [isActive]="isActive" [itemCurr]="item"
+                    [isFirst]="false"></app-dropdown>
+            </ng-template>
+        </li>
+    </ul>
+</div>
+
+<!-- dropdown-toggle -->

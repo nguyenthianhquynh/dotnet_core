@@ -41,5 +41,16 @@ namespace API.Controllers
 
             return Ok(orders);
         }
+
+        [HttpGet("shipments")]
+        public async Task<ActionResult<IReadOnlyList<Shipment>>> GetShipmentsAsync()
+        {
+            //var email = User.RetrieveEmailFromPrincipal();
+            //string userId = User.RetrieveNameIdentifierFromPrincipal();
+
+            var shipments = await _orderService.GetShipmentAsync();
+
+            return Ok(shipments);
+        }
     }
 }

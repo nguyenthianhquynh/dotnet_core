@@ -4,11 +4,13 @@ import { LoginComponent } from './auth/login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './auth/register/register.component';
 import { RouterModule } from '@angular/router';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,

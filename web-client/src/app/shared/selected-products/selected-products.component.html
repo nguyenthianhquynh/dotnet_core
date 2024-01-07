@@ -1,0 +1,36 @@
+<div class="table-responsive mt-3">
+    <table class="table">
+        <thead class="bg-light text-uppercase">
+            <tr class="bg-light px-4 py-3 text-uppercase fw-bold">
+                <th>name</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+                <th [hidden]="isReadonly">remove</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="(basketService.basket$ | async) as basket">
+            <tr *ngFor="let item of basket.items">
+                <th class="cursor-poiter" routerLink="/dashboard/{{item.id}}">
+                    <div class="d-flex">
+                        <img src="{{item.pictureUrl}}" alt="{{item.productName}}" style="max-height: 50px;">
+                        <div>
+                            <p class="pb-0 mb-0">{{item.productName}}</p>
+                            <p class="text-muted fst-italic">{{item.type}}</p>
+                        </div>
+                    </div>
+                </th>
+                <th>{{item.price | currency: 'VND':'symbol':'1.0'}}</th>
+                <!-- <th>{{item.price | currency:'USD':'symbol':'1.2-2'}}</th> -->
+                <th>
+                    <button [hidden]="isReadonly" (click)="decreaseProduct(item)" class="btn btn-primary">-</button>
+                    {{item.quantity}}
+                    <button [hidden]="isReadonly" (click)="increaseProduct(item)" class="btn btn-primary">+</button>
+                </th>
+                <th>{{item.quantity * item.price | currency: 'VND':'symbol':'1.0'}}</th>
+                <th [hidden]="isReadonly"><i (click)="deleteProduct(item)" class="fa fa-trash default-font-size text-danger"
+                        aria-hidden="true"></i></th>
+            </tr>
+        </tbody>
+    </table>
+</div>

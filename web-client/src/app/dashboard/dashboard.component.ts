@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 import { Product } from '../models/product';
 import { UrlParams } from '../models/urlParams';
-import { Type } from '../models/type';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +10,6 @@ import { Type } from '../models/type';
 })
 export class DashboardComponent {
   products: Product[] = [];
-  types: Type[] = [];
   urlParams = new UrlParams();
 
   constructor(private service:DashboardService) {
@@ -20,7 +18,6 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.getProducts()
-    this.getTypes()
   }
 
   getProducts(){
@@ -34,16 +31,7 @@ export class DashboardComponent {
     });
   }
 
-  getTypes() {
-    this.service.getTypes().subscribe({
-      next: (_types: any) => {
-        this.types = _types;
-      },
-      error: (err: any) => {
-        console.log(err);
-      }
-    });
-  }
+
 
   sort(event: any) {
     this.urlParams.sort = event.target.value;
