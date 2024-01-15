@@ -14,12 +14,14 @@ namespace API.Extensions
 {
     public static class IdentityServiceExtensions
     {
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config){
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
+        {
 
             services.AddDbContext<AppIdentityDBContext>(opt =>
-{
-    opt.UseSqlite(config.GetConnectionString("IdentityConnection"));
-});
+            {
+                opt.UseSqlite(config.GetConnectionString("IdentityConnection"));
+                opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
 
             services.AddIdentityCore<User>(opt =>
             {

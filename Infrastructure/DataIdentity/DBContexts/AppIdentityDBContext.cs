@@ -17,5 +17,10 @@ namespace Infrastructure.Data.DBcontexts
         {
             base.OnModelCreating(builder);
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .EnableSensitiveDataLogging();
+        }
     }
 }
